@@ -1,5 +1,5 @@
 /*
-Exercise - UserDefined Exception
+Exercise - Unchecked Exception
  */
 
 package On0611;
