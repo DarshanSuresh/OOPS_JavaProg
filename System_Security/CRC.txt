@@ -1,0 +1,106 @@
+ #include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#define N strlen(gen_poly)
+
+char data[28];           // Data to be transmitted
+char check_value[28];    // Check value (CRC)
+char gen_poly[10];       // Generator polynomial
+int data_length, i, j;
+
+// Function to XOR the check_value with the generator polynomial
+void XOR() {
+    for (j = 1; j < N; j++) {
+        check_value[j] = (check_value[j] == gen_poly[j]) ? '0' : '1';
+    }
+}
+
+// Function to perform the CRC division
+void crc() {
+    for (i = 0; i < N; i++) {
+        check_value[i] = data[i];
+    }
+
+    do {
+        if (check_value[0] == '1') {
+            XOR();
+        }
+        for (j = 0; j < N - 1; j++) {
+            check_value[j] = check_value[j + 1];
+        }
+        check_value[j] = data[i++];
+    } while (i <= data_length + N - 1);
+    check_value[N - 1] = '\0';  // Null-terminate the CRC check value
+}
+
+// Function to check if the received data has an error
+void receiver() {
+    printf("Enter the received data: ");
+    scanf("%27s", data);  // Prevent buffer overflow
+
+    // Validate received data to ensure it contains only '0' or '1'
+    for (i = 0; i < strlen(data); i++) {
+        if (data[i] != '0' && data[i] != '1') {
+            printf("Invalid input. Please enter a valid binary string.\n");
+            return;
+        }
+    }
+
+    printf("Data received: %s\n", data);
+    crc();
+
+    // Check if there is an error in the received data
+    for (i = 0; (i < N - 1) && (check_value[i] != '1'); i++);
+    if (i < N - 1) {
+        printf("\nError detected\n\n");
+    } else {
+        printf("\nNo error detected\n\n");
+    }
+}
+
+int main() {
+    printf("Enter data to be transmitted: ");
+    scanf("%27s", data);  // Prevent buffer overflow
+
+    // Validate the input to ensure it contains only '0' or '1'
+    for (i = 0; i < strlen(data); i++) {
+        if (data[i] != '0' && data[i] != '1') {
+            printf("Invalid input. Please enter a valid binary string.\n");
+            return 1;
+        }
+    }
+
+    printf("\nEnter the generating polynomial: ");
+    scanf("%9s", gen_poly);  // Prevent buffer overflow
+
+    // Validate the generating polynomial
+    for (i = 0; i < strlen(gen_poly); i++) {
+        if (gen_poly[i] != '0' && gen_poly[i] != '1') {
+            printf("Invalid generating polynomial. Please enter a valid binary string.\n");
+            return 1;
+        }
+    }
+
+    data_length = strlen(data);
+
+    // Pad the data with n-1 zeros
+    for (i = data_length; i < data_length + N - 1; i++) {
+        data[i] = '0';
+    }
+    printf("\nData padded with n-1 zeros: %s\n", data);
+
+    crc();
+
+    // Display the CRC or check value
+    printf("\nCRC or check value is: %s", check_value);
+
+    // Append the check value to the original data to form the final data to be sent
+    for (i = data_length; i < data_length + N - 1; i++) {
+        data[i] = check_value[i - data_length];
+    }
+    printf("\nFinal data to be sent: %s\n", data);
+
+    receiver();
+
+    return 0;
+}

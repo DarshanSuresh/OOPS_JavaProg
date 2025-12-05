@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <math.h>
+
+
+long long calculatePower(long long base, long long exponent, long long modulus){
+	long long result = 1;
+	base %= modulus;
+
+
+	while (exponent > 0) {
+    	if(exponent % 2 == 1) {
+        	result = (result * base) % modulus;
+    	}
+    	exponent >>=1;
+    	base = (base * base) % modulus;
+	}
+	return results;
+}
+
+
+int main(){
+	long long prime, generator, x, privateKeyAlice, y, privateKeyBob,secretKeyAlice, secretKeyBob;
+
+
+	prime = 23;
+	printf("Prime number (P): %lld\n", prime);
+    
+	generator = 9;
+    	printf("Generator value (G): %lld\n", generator);
+
+
+    	privateKeyAlice = 4;                                                           	 
+    	printf("Alice's private key (a): %lld\n", privateKeyAlice);
+
+
+    	x = calculatePower(generator, privateKeyAlice, prime);
+
+
+    	privateKeyBob = 3;
+    	printf("Bob's private key (b): %lld\n", privateKeyBob);
+
+
+    	y = calculatePower(generator, privateKeyBob, prime);
+
+
+    	secretKeyAlice = calculatePower(y, privateKeyAlice, prime);
+    	secretKeyBob = calculatePower(x, privateKeyBob, prime);
+
+
+    	printf("Secret key for Alice: %lld\n", secretKeyAlice);
+	printf("Secret key for Bob: %lld\n", secretKeyBob);
+
+
+	return 0;
+}
