@@ -6,7 +6,7 @@ Implement the logic using :
 Compare the output and explain the difference in execution(short vs circuit vs full evaluation) 
  */
 package On1809;
-
+ 
 public class Operator { 
     public static void main(String[] args) { 
         
