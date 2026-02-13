@@ -12,7 +12,7 @@ final class FinalClass {
 
 // Uncommenting this will cause a compilation error
 // class AttemptedChild extends FinalClass { }
-
+ 
 public class FinalClassDemo {
     public static void main(String[] args) {
         FinalClass obj = new FinalClass();
