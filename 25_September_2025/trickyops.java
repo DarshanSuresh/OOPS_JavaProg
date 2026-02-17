@@ -9,4 +9,4 @@ public class trickyops {
        a=a++ + ++a *a--; 
        System.out.println(a); 
     }
-}
+} 
