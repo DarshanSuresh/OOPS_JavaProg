@@ -9,7 +9,7 @@ package On1809;
  
 public class Operator { 
     public static void main(String[] args) { 
-        
+         
         int num = 4;  
         if ((num % 2 == 0) && isDivisibleBy3(num)) 
             System.out.println("Using logical &&: Divisible by 2 and 3"); 
