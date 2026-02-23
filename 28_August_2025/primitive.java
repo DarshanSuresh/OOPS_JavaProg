@@ -1,6 +1,6 @@
 
 package On2808;
-
+ 
 public class primitive { 
     public static void main(String[] args) { 
         byte myByte = 100; 
@@ -22,3 +22,4 @@ public class primitive {
         System.out.println("boolean: " + myBoolean); 
     }
 } 
+
