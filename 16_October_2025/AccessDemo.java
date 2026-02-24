@@ -7,7 +7,7 @@ package On1610;
 class Parent {
     protected int protectedVar = 10;
     public int publicVar = 20;
-}
+} 
 
 class Child extends Parent {
     void display() {
@@ -22,4 +22,5 @@ public class AccessDemo {
         obj.display();
     }
 }
+
 
