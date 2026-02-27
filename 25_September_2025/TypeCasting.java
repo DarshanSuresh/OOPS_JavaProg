@@ -7,7 +7,7 @@ Why the difference?
 Integer division → truncates decimals, keeps only whole number.
 Floating-point division → preserves fractional part.
  */
-package On2509;
+package On2509; 
 
 public class TypeCasting {
     public static void main(String[] args) {
@@ -20,3 +20,4 @@ public class TypeCasting {
         System.out.println("with type cast " + result);
     }
 }
+
