@@ -6,7 +6,7 @@ Show that these variable cannot be accessed outside the method.
 package On1809;
 
 public class Sum { 
-
+ 
     public void calculateSum() { 
         int a = 10;
         int b = 20;
