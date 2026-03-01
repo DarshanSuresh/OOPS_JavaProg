@@ -6,7 +6,7 @@ the university name once and show the change reflects for all objects
 package On1809;
 import java.io.DataInputStream;
 import java.io.IOException;
- 
+
 public class University {
 
     static String universityName;
