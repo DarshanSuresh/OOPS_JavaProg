@@ -1,6 +1,6 @@
 package On0409;
 
-import java.io.DataInputStream; 
+import java.io.DataInputStream;  
 import java.io.IOException; 
 
 public class mathops { 
