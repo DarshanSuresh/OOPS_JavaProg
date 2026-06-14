@@ -7,7 +7,7 @@ class Employee {
     int id; 
     String name; 
     double salary; 
-
+ 
     // Constructor 1: default 
     Employee() { 
         id = 10; 
